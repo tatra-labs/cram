@@ -363,7 +363,7 @@ def generate(model, tokenizer, cache: CompactCache | None, prompt: str, max_new_
         out.append(token)
         ids = torch.tensor([token], device=model.device)
     if cache is None:
-        full.crop(n0)
+        teacher.trim(full, n0)
     return tokenizer.decode(out, skip_special_tokens=True)
 
 

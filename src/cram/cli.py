@@ -47,7 +47,8 @@ def main(argv: list[str] | None = None) -> None:
 
 def _load(name: str, device: str):
     dtype = torch.bfloat16 if device == "cuda" else torch.float32
-    return AutoModelForCausalLM.from_pretrained(name, dtype=dtype).to(device).eval(), AutoTokenizer.from_pretrained(name)
+    model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype).to(device).eval()
+    return model, AutoTokenizer.from_pretrained(name)
 
 
 if __name__ == "__main__":

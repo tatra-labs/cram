@@ -33,6 +33,13 @@ def prefill(model, doc_ids: torch.Tensor) -> DynamicCache:
     return cache
 
 
+def trim(cache: DynamicCache, length: int) -> None:
+    """Drop every cached token after the first `length` (a negative `crop` works across transformers versions)."""
+    extra = cache.get_seq_length() - length
+    if extra > 0:
+        cache.crop(-extra)
+
+
 def doc_kv(cache: DynamicCache, layer: int) -> tuple[torch.Tensor, torch.Tensor]:
     """Keys (with RoPE) and values of the document in one layer: [Hkv, N, d] each."""
     return cache.layers[layer].keys[0], cache.layers[layer].values[0]
@@ -73,14 +80,15 @@ def kvzip_scores(model, tokenizer, cache: DynamicCache, doc_ids: torch.Tensor, c
             best = torch.maximum(best, weights.amax(1))
         scores[module.layer_idx] = (best * vnorm).view(-1, groups, n).amax(1)  # max over grouped heads
 
-    hooks = [layer.register_forward_pre_hook(remember_norm(i), with_kwargs=True) for i, layer in enumerate(layers(model))]
+    hooks = [layer.register_forward_pre_hook(remember_norm(i), with_kwargs=True)
+             for i, layer in enumerate(layers(model))]
     try:
         with attention.capture(model, sink):
             model(input_ids=ids, past_key_values=cache, use_cache=True)
     finally:
         for h in hooks:
             h.remove()
-        cache.crop(n)
+        trim(cache, n)
     return scores
 
 
@@ -114,7 +122,7 @@ def rollouts(model, tokenizer, cache: DynamicCache, prompts: list[str], max_new:
                     break
                 logits = model(input_ids=torch.tensor([[token]], device=model.device), past_key_values=cache,
                                use_cache=True).logits[0, -1]
-            cache.crop(n)
+            trim(cache, n)
             out.append(Rollout(torch.cat([ids.cpu(), torch.tensor(cont)]), len(ids), torch.stack(tops),
                                torch.stack(logps), torch.stack(tails)))
             if log and (j + 1) % 40 == 0:
