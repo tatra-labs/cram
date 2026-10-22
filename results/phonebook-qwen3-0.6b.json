@@ -1,0 +1,161 @@
+{
+  "args": {
+    "model": "Qwen/Qwen3-0.6B",
+    "tokens": 4096,
+    "ratios": [
+      8.0,
+      16.0,
+      32.0
+    ],
+    "docs": 2,
+    "questions": 20,
+    "steps": [
+      1000,
+      1000
+    ],
+    "prompts": 480,
+    "out": "results/phonebook-qwen3-0.6b"
+  },
+  "results": [
+    {
+      "doc": 0,
+      "method": "full cache",
+      "ratio": 1,
+      "accuracy": 100.0,
+      "seconds": 0
+    },
+    {
+      "doc": 0,
+      "method": "KVZip+ (eviction)",
+      "ratio": 8.0,
+      "accuracy": 5.0,
+      "seconds": 0
+    },
+    {
+      "doc": 0,
+      "method": "cram, stage 1",
+      "ratio": 8.0,
+      "accuracy": 90.0,
+      "seconds": 648
+    },
+    {
+      "doc": 0,
+      "method": "cram",
+      "ratio": 8.0,
+      "accuracy": 90.0,
+      "seconds": 1131
+    },
+    {
+      "doc": 0,
+      "method": "KVZip+ (eviction)",
+      "ratio": 16.0,
+      "accuracy": 0.0,
+      "seconds": 0
+    },
+    {
+      "doc": 0,
+      "method": "cram, stage 1",
+      "ratio": 16.0,
+      "accuracy": 85.0,
+      "seconds": 618
+    },
+    {
+      "doc": 0,
+      "method": "cram",
+      "ratio": 16.0,
+      "accuracy": 80.0,
+      "seconds": 862
+    },
+    {
+      "doc": 0,
+      "method": "KVZip+ (eviction)",
+      "ratio": 32.0,
+      "accuracy": 0.0,
+      "seconds": 0
+    },
+    {
+      "doc": 0,
+      "method": "cram, stage 1",
+      "ratio": 32.0,
+      "accuracy": 45.0,
+      "seconds": 605
+    },
+    {
+      "doc": 0,
+      "method": "cram",
+      "ratio": 32.0,
+      "accuracy": 40.0,
+      "seconds": 828
+    },
+    {
+      "doc": 1,
+      "method": "full cache",
+      "ratio": 1,
+      "accuracy": 95.0,
+      "seconds": 0
+    },
+    {
+      "doc": 1,
+      "method": "KVZip+ (eviction)",
+      "ratio": 8.0,
+      "accuracy": 5.0,
+      "seconds": 0
+    },
+    {
+      "doc": 1,
+      "method": "cram, stage 1",
+      "ratio": 8.0,
+      "accuracy": 90.0,
+      "seconds": 642
+    },
+    {
+      "doc": 1,
+      "method": "cram",
+      "ratio": 8.0,
+      "accuracy": 80.0,
+      "seconds": 944
+    },
+    {
+      "doc": 1,
+      "method": "KVZip+ (eviction)",
+      "ratio": 16.0,
+      "accuracy": 0.0,
+      "seconds": 0
+    },
+    {
+      "doc": 1,
+      "method": "cram, stage 1",
+      "ratio": 16.0,
+      "accuracy": 70.0,
+      "seconds": 616
+    },
+    {
+      "doc": 1,
+      "method": "cram",
+      "ratio": 16.0,
+      "accuracy": 70.0,
+      "seconds": 860
+    },
+    {
+      "doc": 1,
+      "method": "KVZip+ (eviction)",
+      "ratio": 32.0,
+      "accuracy": 0.0,
+      "seconds": 0
+    },
+    {
+      "doc": 1,
+      "method": "cram, stage 1",
+      "ratio": 32.0,
+      "accuracy": 20.0,
+      "seconds": 601
+    },
+    {
+      "doc": 1,
+      "method": "cram",
+      "ratio": 32.0,
+      "accuracy": 25.0,
+      "seconds": 824
+    }
+  ]
+}
