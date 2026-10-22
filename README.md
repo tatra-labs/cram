@@ -118,6 +118,11 @@ For this small model, stage 1 does the work. Stage 2 kept lowering the distillat
 prompts but did not improve lookups: −5, −2.5 and 0 points, that is, one question or less per document. The
 paper reports stage 2 gains with Qwen3-1.7B; `Config(stage2_steps=0)` skips it.
 
+**Open issue: Qwen3-1.7B**, the paper's main model, does worse here than it should. On one document at 16×,
+cram reaches 40% after stage 1 and 35% after stage 2 (eviction: 0%), well below the 87.8% the paper reports
+for this setting. Its preserver allocation looks the same as the 0.6B model's, so the gap lies elsewhere.
+Issues and pull requests are welcome.
+
 Reproduce with `python examples/phonebook.py` (about an hour on a laptop GPU); raw numbers are in
 [`results/`](results).
 
