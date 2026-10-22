@@ -1,5 +1,11 @@
 <h1 align="center">cram</h1>
 
+<p align="center">
+  <a href="https://github.com/tatra-labs/cram/actions/workflows/tests.yml"><img src="https://github.com/tatra-labs/cram/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
+  <a href="https://arxiv.org/abs/2610.20582"><img src="https://img.shields.io/badge/arXiv-2610.20582-b31b1b.svg" alt="arXiv"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license"></a>
+</p>
+
 <p align="center"><b>Cram a long document into a tiny KV cache.</b><br>
 Before any question arrives, the model studies the document and trains a KV cache many times smaller
 than the original, then answers questions from it.</p>
